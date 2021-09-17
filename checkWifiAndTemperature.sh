@@ -12,7 +12,7 @@ do
         TEMP=$(adb -s "$DEVICE" shell dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}')
         if adb -s "$DEVICE" shell ping -c 1 8.8.8.8 | grep -q rtt; then
             WIFI=$(adb -s "$DEVICE" shell dumpsys netstats | grep -E 'iface=wlan.*networkId'  | awk '{print $4}' | head -1 | cut -d'"' -f 2)
-            echo "$DEVICE" "$MODEL" has a connection to the internet wifi "$WIFI"and the battery temperature is $((TEMP / 10)) degrees Celsius
+            echo "$DEVICE" "$MODEL" has a connection to the internet wifi "$WIFI" and the battery temperature is $((TEMP / 10)) degrees Celsius
         else
             echo "$DEVICE" "$MODEL" has no connection to the internet and the battery temperature is $((TEMP / 10)) degrees Celsius
         fi
